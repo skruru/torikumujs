@@ -1,0 +1,23 @@
+.btn {
+  padding: 50px;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 100px;
+  box-shadow: 0 5px 0 #aaa;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: bold;
+}
+.btn:focus {
+  outline: 0;
+}
+.btn:active {
+  box-shadow: none;
+  margin-top: 105px;
+}
+p {
+  text-align: center;
+  font-weight: bold;
+  font: 30px;
+}
