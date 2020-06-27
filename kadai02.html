@@ -33,6 +33,7 @@
       height: 50px;
       cursor: pointer;
       border-radius: 5px;
+      user-select: none;
     }
     .btn:active {
       margin-top: 5px;
@@ -100,16 +101,27 @@
           }
           score.appendChild(p2);
           score.classList.add('show');
+
+          const reset = document.createElement('p');
+          reset.classList.add('reset');
+          reset.textContent = 'もう一回する';
+          score.appendChild(reset);
+
+          document.querySelector('.reset').addEventListener('click', () =>{
+            score.classList.remove('show');
+            score.removeChild(p);
+            score.removeChild(p2);
+            score.removeChild(reset);
+            document.querySelectorAll('.btn').forEach((e) => {
+              e.removeAttribute('disabled');
+            });
+          });
+
+          document.querySelectorAll('.btn').forEach((e) => {
+            e.setAttribute('disabled','true');
+          });
         });
       }
-      const reset = document.createElement('p');
-      reset.classList.add('reset');
-      reset.textContent = 'もう一回する';
-      score.appendChild(reset);
-      // console.log(result);
-      document.querySelector('.reset').addEventListener('click', () =>{
-        score.classList.remove('show');
-      });
     }
   </script>
 </body>
