@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    .container {
+      width: 500px;
+      margin: 0 auto;
+    }
+    .h1, .reset {
+      font-size: 30px;
+      text-align: center;
+      color: red;
+    }
+    .p {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .flex {
+      display: flex;
+      justify-content: space-around;
+      height: 100px;
+      align-items: center;
+    }
+    .btn {
+      padding: 10px 20px;
+      font-weight: bold;
+      box-shadow: 0 5px #aaa;
+      height: 50px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .btn:active {
+      margin-top: 5px;
+      box-shadow: none;
+      background: red;
+      color: #fff;
+    }
+    .result {
+      font-weight: bold;
+      font-size: 40px;
+      text-align: center;
+    }
+    .reset {
+      cursor: pointer;
+      border: 2px solid red;
+      width: 50%;
+      margin: 0 auto;
+      user-select: none;
+    }
+    .score {
+      transition: 1s;
+      transform: translate(-100px,0);
+      opacity: 0;
+    }
+    .show {
+      transform: none;
+      opacity: 1;
+    }
+  </style>
+  <div class="container">
+    <h1 class="h1">ジャンケンゲーム</h1>
+    <p class="p">最初はグー！ジャンケン。。。</p>
+    <div class="flex">
+      <button id="one" class="btn">グー</button>
+      <button id="two" class="btn">チョキ</button>
+      <button id="three" class="btn">パー</button>
+    </div>
+    <div class="score">
+    </div>
+  </div>
+  <script>
+    'use strict';
+    {
+      const score = document.querySelector('.score');
+      for (let i = 0; i < 3; i++) {
+        document.querySelectorAll('.btn')[i].addEventListener('click', () => {
+          const cpu = ['グー', 'チョキ', 'パー'];
+          const cpuRandomIndex = Math.floor(Math.random() * cpu.length);
+          const p = document.createElement('p');
+          p.classList.add('p');
+          p.textContent = `相手は${cpu[cpuRandomIndex]}を出したので。。。`;
+          score.appendChild(p);
+
+          const p2 = document.createElement('p');
+          p2.classList.add('result');
+          if (cpuRandomIndex === i){
+              p2.textContent = 'あいこ'
+              p2.style.color = 'green';
+          } else if (i < cpuRandomIndex && cpuRandomIndex < i+2 || i === 2 && cpuRandomIndex === 0) {
+              p2.textContent = '勝ち'
+              p2.style.color = 'red';
+          } else {
+              p2.textContent = '負け'
+              p2.style.color = 'blue';
+          }
+          score.appendChild(p2);
+          score.classList.add('show');
+        });
+      }
+      const reset = document.createElement('p');
+      reset.classList.add('reset');
+      reset.textContent = 'もう一回する';
+      score.appendChild(reset);
+      // console.log(result);
+      document.querySelector('.reset').addEventListener('click', () =>{
+        score.classList.remove('show');
+      });
+    }
+  </script>
+</body>
+</html>
